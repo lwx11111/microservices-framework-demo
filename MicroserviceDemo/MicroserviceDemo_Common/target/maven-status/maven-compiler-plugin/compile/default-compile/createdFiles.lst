@@ -1,0 +1,4 @@
+org\example\web\SimpleResponse.class
+org\example\domain\User.class
+org\example\web\SimpleResponse$SimpleResponseBuilder.class
+org\example\domain\ShopItem.class
