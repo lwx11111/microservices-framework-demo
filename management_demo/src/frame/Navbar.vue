@@ -17,7 +17,7 @@
                     <el-dropdown class="avatar-container right-menu-item hover-effect"
                                  trigger="click">
                         <div class="avatar-wrapper">
-                            <img class="user-avatar" src="../assets/images/login.jpg" alt="">
+<!--                            <img class="user-avatar" src="../assets/images/login.jpg" alt="">-->
                             <span class="user-name">{{ data.name }}</span>
                             <i class="el-icon-caret-bottom"/>
                         </div>

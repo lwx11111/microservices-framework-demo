@@ -1,13 +1,19 @@
 import request from '@/utils/request'
-const serverName = '/shop'
+const serverName = 'app'
 
 
 export default {
+  test(){
+    return request({
+      url: '/shopitem/1',
+      method: 'get',
+    })
+  },
 
   // 分页查询
   selpage4shopitem(data) {
     return request({
-      url: serverName + '//shopitem/selpage',
+      url: serverName + '/shopitem/selpage',
       method: 'post',
       data: data
     })
@@ -16,7 +22,7 @@ export default {
   // 添加
   add4shopitem(obj) {
     return request({
-      url: serverName + '//shopitem',
+      url: serverName + '/shopitem',
       method: 'post',
       data: obj
     })
@@ -25,7 +31,7 @@ export default {
   // 修改
   update4shopitem(id, obj) {
     return request({
-      url: serverName + '//shopitem/' + id,
+      url: serverName + '/shopitem/' + id,
       method: 'put',
       data: obj
     })
@@ -34,7 +40,7 @@ export default {
   // 删除单条
   del4shopitem(id) {
     return request({
-      url: serverName + '//shopitem/' + id,
+      url: serverName + '/shopitem/' + id,
       method: 'delete',
     })
   },
@@ -43,7 +49,7 @@ export default {
   // 删除多条
   dels4shopitem(ids) {
     return request({
-      url: serverName + '//shopitem/dels',
+      url: serverName + '/shopitem/dels',
       method: 'post',
       data: ids
     })
@@ -52,7 +58,7 @@ export default {
   // 查询单条
   sel4shopitem(id) {
     return request({
-      url: serverName + '//shopitem/' + id,
+      url: serverName + '/shopitem/' + id,
       method: 'get',
     })
 
@@ -61,7 +67,7 @@ export default {
   // 下载Excel模板
   downloadExcelTemplate(params) {
     return request({
-      url: serverName + '//shopitem/downloadExcelTemplate',
+      url: serverName + '/shopitem/downloadExcelTemplate',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'
@@ -71,7 +77,7 @@ export default {
   // 导入Excel接口URL
   uploadExcelUrl() {
     return request({
-      url: serverName + '//shopitem/uploadExcel',
+      url: serverName + '/shopitem/uploadExcel',
       type: 'form',
       method: 'post',
     })
@@ -80,7 +86,7 @@ export default {
   // 导出Excel
   excelData4shopitem(params) {
     return request({
-      url: serverName + '//shopitem/excel',
+      url: serverName + '/shopitem/excel',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'

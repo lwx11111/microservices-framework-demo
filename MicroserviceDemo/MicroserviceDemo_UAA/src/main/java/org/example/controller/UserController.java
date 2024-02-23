@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "服务")
 @RequestMapping("/user")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserController {
     @Autowired
     private IUserService service;

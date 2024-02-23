@@ -226,6 +226,8 @@
     import { useStore } from "vuex";
     import { useRouter } from 'vue-router'
     import {ElMessage, ElMessageBox} from "element-plus";
+    import axios from 'axios';
+
 
     const store = useStore();
     const router = useRouter()
@@ -271,20 +273,6 @@
     // Mounted
     onMounted(() => {
         getData();
-        // window.onresize = () => {
-        //     return (() => {
-        //         data.screenHeight = window.innerHeight
-        //     })()
-        // }
-
-        // 菜单界面生成时日志记录
-        // const islog = Vue.prototype.$config.ISLOG;
-        // if (true==islog){
-        //     this.OperatorLogParam.operateFeatures = '菜单点击'
-        //     this.OperatorLogParam.operateType = LogType.Query
-        //     this.OperatorLogParam.operateState = '成功'
-        //     OperatorLog.setOperationLog(this.OperatorLogParam)
-        // }
     })
 
     // Methods

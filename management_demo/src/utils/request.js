@@ -9,8 +9,7 @@ import qs from "qs";
 axios.defaults.timeout = 10000 // 超时时间
 
 // 网关地址
-axios.defaults.baseURL = 'http://localhost:8081';
-
+axios.defaults.baseURL = 'http://127.0.0.1:8888';
 // 整理数据
 axios.defaults.transformRequest = function(data) {
     return data
@@ -19,9 +18,15 @@ axios.defaults.transformRequest = function(data) {
 // 路由请求拦截
 axios.interceptors.request.use(
     config => {
-        // 权限系统适配网关
-        if (config.url.indexOf('/manager') !== -1) {
-            config.baseURL = 'http://43.138.149.121:8921';
+        // 网关跨域问题解决不了了
+        if (config.url.includes("app")){
+            config.baseURL = 'http://127.0.0.1:7000'
+            config.url = config.url.replace("app", "")
+        }
+
+        if (config.url.includes("user")){
+            config.baseURL = 'http://127.0.0.1:8000'
+            config.url = config.url.replace("user", "")
         }
 
         if (config.type === 'form'){
@@ -37,6 +42,7 @@ axios.interceptors.request.use(
             config.headers['Content-Type'] = 'application/json;charset=UTF-8'
             config.data = JSON.stringify(config.data)
         }
+
         return config
     },
     error => {
