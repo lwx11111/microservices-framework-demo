@@ -1,10 +1,10 @@
 package org.example.service;
 
-import org.example.domain.User;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.domain.Comment;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,19 +16,17 @@ import java.util.Map;
  * </p>
  *
  * @author lwx20
- * @since 2024-02-22
+ * @since 2023-12-18
  */
-public interface IUserService extends IService<User> {
-    void register(User obj) throws Exception;
-
-    User login(User obj) throws Exception;
+public interface ICommentService extends IService<Comment> {
+    Boolean saveComments(Map<String, String> comments) throws Exception;
     /**
      * 根据参数保存
      * @param obj
      * @param params
      * @return: void
      */
-    void saveByParam(User obj,Map<String, String> params);
+    void saveByParam(Comment obj,Map<String, String> params);
 
     /**
      * 根据参数更新
@@ -36,7 +34,7 @@ public interface IUserService extends IService<User> {
      * @param params
      * @return: void
      */
-    void updateByParam(User obj,Map<String, String> params);
+    void updateByParam(Comment obj,Map<String, String> params);
     /**
      * 根据条件删除
      *
@@ -49,33 +47,33 @@ public interface IUserService extends IService<User> {
      * 根据条件查询
      *
      * @param params
-     * @return: List<User>
+     * @return: List<Comment>
      */
-     List<User> selectBy(Map<String, String> params);
+     List<Comment> selectBy(Map<String, String> params);
 
     /**
      * 分页查询
      *
      * @param params
-     * @return: IPage<User>
+     * @return: IPage<Comment>
     */
-    IPage<User> selectPage(Map<String, String> params);
+    IPage<Comment> selectPage(Map<String, String> params);
 
     /**
      * 分页查询-自定义sql-Wrapper
      *
      * @param params
-     * @return: IPage<User>
+     * @return: IPage<Comment>
     */
-    IPage<User> selpageCustomSqlByWrapper(Map<String, String> params);
+    IPage<Comment> selpageCustomSqlByWrapper(Map<String, String> params);
 
     /**
      * 分页查询-自定义sql-Map
      *
      * @param params
-     * @return: IPage<User>
+     * @return: IPage<Comment>
     */
-    IPage<User> selpageCustomSqlByMap(Map<String, String> params);
+    IPage<Comment> selpageCustomSqlByMap(Map<String, String> params);
 
     /**
      * 下载excel模板

@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.example.domain.User;
 import org.example.dao.UserMapper;
 import org.example.service.IUserService;
@@ -37,6 +38,23 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+    @Override
+    public void register(User obj) throws Exception {
+        this.save(obj);
+    }
+
+    @Override
+    public User login(User obj) throws Exception {
+        LambdaQueryWrapper<User> query = new LambdaQueryWrapper<User>()
+                .eq(User::getName, obj.getName())
+                .eq(User::getPassword, obj.getPassword());
+        User user = this.getOne(query);
+        if(user == null){
+            throw new Exception("用户名或密码错误");
+        }
+        return user;
+    }
 
     @Override
     public void saveByParam(User obj,Map<String, String> params){

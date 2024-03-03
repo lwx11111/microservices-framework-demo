@@ -12,6 +12,7 @@
     <module>MicroserviceDemo_UAA</module>
     <module>MicroserviceDemo_AppDemo</module>
     <module>MicroserviceDemo_Common</module>
+      <module>MicroserviceDemo_Comment</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>

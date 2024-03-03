@@ -4,9 +4,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from "./router/index";
 import axios from 'axios'
-
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import './utils/stringUtil'
 // 全局变量
 import dataJson from "../public/config.json";
 

@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 8001
   servlet:
     encoding:
       force: true
@@ -8,7 +8,7 @@ server:
 
 spring:
   application:
-    name: app
+    name: comment
   cloud:
     nacos:
       discovery:

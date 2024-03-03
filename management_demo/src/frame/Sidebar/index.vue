@@ -66,6 +66,17 @@
                     'icon': 'Document'
                 }]
             },
+            {
+                'funId': '4',
+                'funName': '评论管理',
+                'icon': 'Document',
+                'children':[{
+                    'funId': '41',
+                    'funName': '评论列表',
+                    'url': '/comment/index',
+                    'icon': 'Document'
+                }]
+            },
         ]
     })
 </script>

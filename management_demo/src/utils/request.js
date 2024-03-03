@@ -29,6 +29,12 @@ axios.interceptors.request.use(
             config.url = config.url.replace("user", "")
         }
 
+        if (config.url.includes("comment")){
+            config.baseURL = 'http://127.0.0.1:8001'
+            config.url = config.url.replace("comment", "")
+        }
+
+
         if (config.type === 'form'){
             // 后端@RequestParams注解接收
             config.headers['Content-Type'] = 'application/x-www-form-urlencoded'

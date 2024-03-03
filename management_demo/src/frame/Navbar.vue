@@ -16,10 +16,8 @@
                 <div class="right-menu">
                     <el-dropdown class="avatar-container right-menu-item hover-effect"
                                  trigger="click">
-                        <div class="avatar-wrapper">
-<!--                            <img class="user-avatar" src="../assets/images/login.jpg" alt="">-->
-                            <span class="user-name">{{ data.name }}</span>
-                            <i class="el-icon-caret-bottom"/>
+                        <div style="margin-top: 20px;">
+                            <span>{{ data.user.name }}</span>
                         </div>
                         <template #dropdown>
                             <el-dropdown-menu>
@@ -79,7 +77,6 @@ import { useRouter, useRoute } from "vue-router";
 import Api from '@/api/api_user.js'
 import {ElMessage} from "element-plus";
 
-import {getEncryptPassword} from "@/utils/passwordEncrypt";
 import { onBeforeRouteUpdate } from "vue-router";
 
 const store = useStore();
@@ -87,6 +84,7 @@ const router = useRouter()
 const route = useRoute();
 
 const data = reactive({
+    user:{},
     // 路由集合
     breadList: [],
     sidebarOpened: false,
@@ -118,8 +116,8 @@ const data = reactive({
 
 // Mounted
 onMounted(() => {
-    data.name = localStorage.getItem("userName")
-    data.form.name = data.name;
+    data.user.id = localStorage.getItem("userId");
+    data.user.name = localStorage.getItem("userName");
 
     getBreadcrumb();
 })
@@ -171,8 +169,8 @@ const form = ref();
 const handleSavePass = () => {
     form.value.validate(valid => {
         if (valid) {
-            data.form.newPass = getEncryptPassword(data.form.newPass, 'aes');
-            data.form.oldPass = getEncryptPassword(data.form.oldPass, 'aes');
+            // data.form.newPass = getEncryptPassword(data.form.newPass, 'aes');
+            // data.form.oldPass = getEncryptPassword(data.form.oldPass, 'aes');
             // Api.modifyPass(data.form).then(res => {
             //     console.log(res)
             //     if (res.code === '20000'){

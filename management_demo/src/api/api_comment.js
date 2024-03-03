@@ -1,73 +1,65 @@
 import request from '@/utils/request'
-const serverName = 'user'
+const serverName = '/comment'
 
 
 export default {
-  register(data) {
+  saveComments(data) {
     return request({
-      url: serverName + '/user/register',
-      method: 'post',
-      data: data
-    })
-  },
-
-  login(data) {
-    return request({
-      url: serverName + '/user/login',
+      url: serverName + '/comment/saveComments',
       method: 'post',
       data: data
     })
   },
 
   // 分页查询
-  selpage4user(data) {
+  selpage4comment(data) {
     return request({
-      url: serverName + '/user/selpage',
+      url: serverName + '/comment/selpage',
       method: 'post',
       data: data
     })
   },
 
   // 添加
-  add4user(obj) {
+  add4comment(obj) {
     return request({
-      url: serverName + '/user',
+      url: serverName + '/comment',
       method: 'post',
       data: obj
     })
   },
 
   // 修改
-  update4user(id, obj) {
+  update4comment(id, obj) {
     return request({
-      url: serverName + '/user/' + id,
+      url: serverName + '/comment/' + id,
       method: 'put',
       data: obj
     })
   },
 
   // 删除单条
-  del4user(id) {
+  del4comment(id) {
     return request({
-      url: serverName + '/user/' + id,
+      url: serverName + '/comment/' + id,
       method: 'delete',
     })
   },
 
 
   // 删除多条
-  dels4user(ids) {
+  dels4comment(ids) {
     return request({
-      url: serverName + '/user/dels',
+      url: serverName + '/comment/dels',
       method: 'post',
       data: ids
     })
   },
 
   // 查询单条
-  sel4user(id) {
+  sel4comment(id) {
     return request({
-      url: serverName + '/user/' + id,
+      url: serverName + '/comment/' + id,
       method: 'get',
     })
 
@@ -76,7 +68,7 @@ export default {
   // 下载Excel模板
   downloadExcelTemplate(params) {
     return request({
-      url: serverName + '/user/downloadExcelTemplate',
+      url: serverName + '//comment/downloadExcelTemplate',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'
@@ -86,16 +78,16 @@ export default {
   // 导入Excel接口URL
   uploadExcelUrl() {
     return request({
-      url: serverName + '/user/uploadExcel',
+      url: serverName + '//comment/uploadExcel',
       type: 'form',
       method: 'post',
     })
 
   },
   // 导出Excel
-  excelData4user(params) {
+  excelData4comment(params) {
     return request({
-      url: serverName + '/user/excel',
+      url: serverName + '//comment/excel',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'

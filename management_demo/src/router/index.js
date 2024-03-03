@@ -4,13 +4,14 @@ import {
   createWebHashHistory,
 } from 'vue-router'
 
-import Login from '@/views/Login/index.vue';
-
 import Frame from "@/frame/index.vue";
 import HomePage from "@/views/homePage.vue";
 
 const ShopItemIndex = () => import('@/views/shopitem/index.vue');
 const UserIndex = () => import('@/views/user/index.vue');
+const Register = () => import('@/views/Login/register.vue')
+const Login = () => import('@/views/Login/index.vue')
+const CommentIndex = () => import('@/views/comment/index.vue');
 // 模块化路由
 const routes = [
     // 路由守卫 vue3动态路由问题导致刷新完页面会爆出No match found for location with path
@@ -21,12 +22,17 @@ const routes = [
     {
         path: '/login',
         component: Login,
-        name: 'Login'
+        name: '登录'
+    },
+    {
+        path: '/register',
+        component: Register,
+        name: '注册'
     },
     {
         path: '/',
         component: Frame,
-        redirect: '/homePage',
+        redirect: '/login',
         name: '首页',
         children: [
             {
@@ -43,6 +49,11 @@ const routes = [
                 path: '/user/index',
                 component: UserIndex,
                 name: '用户管理'
+            },
+            {
+                path: '/comment/index',
+                component: CommentIndex,
+                name: '评论管理'
             },
 
         ]

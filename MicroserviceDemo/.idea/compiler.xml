@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MicroserviceDemo_Common" />
         <module name="MicroserviceDemo_AppDemo" />
+        <module name="MicroserviceDemo_Comment" />
         <module name="MicroserviceDemo_Gateway" />
         <module name="MicroserviceDemo_UAA" />
       </profile>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="MicroserviceDemo" options="-parameters" />
       <module name="MicroserviceDemo_AppDemo" options="-parameters" />
+      <module name="MicroserviceDemo_Comment" options="-parameters" />
       <module name="MicroserviceDemo_Common" options="-parameters" />
       <module name="MicroserviceDemo_Gateway" options="-parameters" />
       <module name="MicroserviceDemo_UAA" options="-parameters" />
