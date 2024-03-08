@@ -1,4 +1,6 @@
 org\example\web\SimpleResponse.class
 org\example\domain\User.class
+org\example\utils\PageUtils.class
 org\example\web\SimpleResponse$SimpleResponseBuilder.class
 org\example\domain\ShopItem.class
+org\example\domain\Comment.class

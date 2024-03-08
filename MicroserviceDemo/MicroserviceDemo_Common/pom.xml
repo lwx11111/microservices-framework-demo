@@ -82,4 +82,17 @@
             <version>4.2.0</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <!--        解决找不到mapper.xml的问题-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/mappers/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
