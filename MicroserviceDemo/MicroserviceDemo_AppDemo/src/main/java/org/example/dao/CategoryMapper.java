@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.domain.Comment;
+import org.example.domain.Category;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,30 +12,30 @@ import java.util.Map;
 
 /**
  * <p>
- *  Mapper 接口
+ * 商铺分类 Mapper 接口
  * </p>
  *
  * @author lwx20
  * @since 2024-03-13
  */
 @Mapper
-public interface CommentMapper extends BaseMapper<Comment> {
+public interface CategoryMapper extends BaseMapper<Category> {
 
     /**
      * 分页查询-自定义sql-Wrapper
      *
      * @param page
      * @param query
-     * @return: IPage<Comment>
+     * @return: IPage<Category>
     */
-    IPage<Comment> selpageCustomSqlByWrapper(Page<Comment> page, @Param(Constants.WRAPPER)QueryWrapper<Comment> query);
+    IPage<Category> selpageCustomSqlByWrapper(Page<Category> page, @Param(Constants.WRAPPER)QueryWrapper<Category> query);
 
     /**
      * 分页查询-自定义sql-Map
      *
      * @param page
      * @param params
-     * @return: IPage<Comment>
+     * @return: IPage<Category>
     */
-    IPage<Comment> selpageCustomSqlByMap(Page<Comment> page, @Param("params") Map<String, String> params);
+    IPage<Category> selpageCustomSqlByMap(Page<Category> page, @Param("params") Map<String, String> params);
 }

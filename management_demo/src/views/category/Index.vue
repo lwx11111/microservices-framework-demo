@@ -9,7 +9,7 @@
                 <el-collapse-item name="1">
                     <template #title>
                         <div class="innerHeader">
-                          管理
+                          商铺分类管理
                         </div>
                     </template>
                     <div style="display: flex;"
@@ -18,8 +18,8 @@
                                  :model="data.formList"
                                  size="default"
                                  label-width="100px">
-                            <el-form-item label="用户名">
-                                <el-input placeholder="请输入用户名"
+                            <el-form-item label="分类名">
+                                <el-input placeholder="请输入分类名"
                                             v-model="data.formList.name"
                                             style="width: 200px"
                                             @keyup.enter.native="getData">
@@ -39,6 +39,7 @@
                         @click="addData()">
                   新增
                 </el-button>
+
                 <el-button
                         type="warning"
                         icon="DocumentDelete"
@@ -85,25 +86,13 @@
                 </el-table-column>
                  <el-table-column
                         prop="name"
-                        label="用户名"
+                        label="分类名"
                         width="180"
                         align="center">
                 </el-table-column>
                  <el-table-column
-                        prop="password"
-                        label="密码"
-                        width="180"
-                        align="center">
-                </el-table-column>
-                 <el-table-column
-                        prop="nickname"
-                        label="昵称"
-                        width="180"
-                        align="center">
-                </el-table-column>
-                 <el-table-column
-                        prop="avatar"
-                        label="头像"
+                        prop="picture"
+                        label="图片"
                         width="180"
                         align="center">
                 </el-table-column>
@@ -159,7 +148,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import Api from '@/api/api_user.js'
+    import Api from '@/api/api_category.js'
     import ItemDialog from './Item.vue'
     import { reactive, ref, defineProps, toRefs, onMounted} from 'vue'
     import Upload from "@/utils/oss/upload.vue";
@@ -179,9 +168,7 @@
         // formList:搜索条件对象 分页控制对象
         formList: {
             name: '',
-            password: '',
-            nickname: '',
-            avatar: ''
+            picture: ''
         },
         // tableData:表格数据
         tableData: [],
@@ -209,14 +196,12 @@
         // 查询参数
         const params = {
             name : data.formList.name,
-            password : data.formList.password,
-            nickname : data.formList.nickname,
-            avatar : data.formList.avatar,
+            picture : data.formList.picture,
             pageIndex : data.pageConfig.currentPage,
             pageSize : data.pageConfig.pageSize
         }
         // 后台请求
-        Api.selpage4user(params).then(res=> {
+        Api.selpage4category(params).then(res=> {
             if (res.code === 200){
                 data.tableData = res.data.records
                 data.pageConfig.total = res.data.total
@@ -239,7 +224,7 @@
             const blobUrl = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = blobUrl
-            a.download = 'User.xls'
+            a.download = '商铺分类.xls'
             a.click()
             window.URL.revokeObjectURL(blobUrl)
         })
@@ -249,7 +234,7 @@
     const uploadExcelRef = ref();
     const uploadExcel = () => {
         // const uploadExcelUrl = Api.uploadExcelUrl();
-        uploadExcelRef.value.init(this.SHOP_SERVER + '/user/uploadExcel');
+        uploadExcelRef.value.init(this.SHOP_SERVER + '/category/uploadExcel');
     }
 
     const deleteDataMany = () => {
@@ -274,7 +259,7 @@
                         type: 'warning',
                     }
             ).then(() => {
-                Api.dels4user(dataids).then(res => {
+                Api.dels4category(dataids).then(res => {
                     if (res.code === 200){
                         ElMessage({
                             type: 'success',
@@ -313,12 +298,12 @@
 
     const excelData = () => {
         const params = {}
-        Api.excelData4user(params).then(data => {
+        Api.excelData4category(params).then(data => {
             const blob = new Blob([data], { type: 'application/vnd.ms-excel' })
             const blobUrl = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = blobUrl
-            a.download = 'User.xls'
+            a.download = '商铺分类.xls'
             a.click()
             window.URL.revokeObjectURL(blobUrl)
         })
@@ -373,7 +358,7 @@
                 }
         ).then(() => {
             console.log(scope.row.id)
-            Api.del4user(scope.row.id).then(res => {
+            Api.del4category(scope.row.id).then(res => {
                 console.log(res)
                 if (res.code === 200){
                     ElMessage({

@@ -53,6 +53,11 @@
                     'funName': '物品列表',
                     'url': '/shopitem/index',
                     'icon': 'Document'
+                },{
+                    'funId': '21',
+                    'funName': '物品分类',
+                    'url': '/shopitem/category',
+                    'icon': 'Document'
                 }]
             },
             {

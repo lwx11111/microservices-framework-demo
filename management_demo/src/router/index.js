@@ -12,6 +12,7 @@ const UserIndex = () => import('@/views/user/index.vue');
 const Register = () => import('@/views/Login/register.vue')
 const Login = () => import('@/views/Login/index.vue')
 const CommentIndex = () => import('@/views/comment/index.vue');
+const CategoryIndex = () => import('@/views/category/Index.vue');
 // 模块化路由
 const routes = [
     // 路由守卫 vue3动态路由问题导致刷新完页面会爆出No match found for location with path
@@ -44,6 +45,11 @@ const routes = [
                 path: '/shopitem/index',
                 component: ShopItemIndex,
                 name: '物品管理'
+            },
+            {
+                path: '/shopitem/category',
+                component: CategoryIndex,
+                name: '物品分类'
             },
             {
                 path: '/user/index',

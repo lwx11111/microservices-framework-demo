@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -18,7 +17,7 @@ import lombok.experimental.Accessors;
 import java.util.Map;
 /**
  * <p>
- * 店铺物品表（只有官方一家店）
+ * 商铺分类
  * </p>
  *
  * @author lwx20
@@ -27,9 +26,9 @@ import java.util.Map;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("shop_item")
-@Schema(name="店铺物品表（只有官方一家店）_ShopItem对象", description="店铺物品表（只有官方一家店）")
-public class ShopItem extends Model<ShopItem> {
+@TableName("category")
+@Schema(name="商铺分类_Category对象", description="商铺分类")
+public class Category extends Model<Category> {
 
     private static final long serialVersionUID=1L;
 
@@ -38,44 +37,20 @@ public class ShopItem extends Model<ShopItem> {
     private String id;
 
     /**
-    * 物品名
+    * 分类名
     */
-    @Schema(description = "物品名")
-    @Excel(name = "物品名")
+    @Schema(description = "分类名")
+    @Excel(name = "分类名")
     @TableField("name")
     private String name;
 
     /**
-    * 物品图片
+    * 图片
     */
-    @Schema(description = "物品图片")
-    @Excel(name = "物品图片")
+    @Schema(description = "图片")
+    @Excel(name = "图片")
     @TableField("picture")
     private String picture;
-
-    /**
-    * 物品介绍
-    */
-    @Schema(description = "物品介绍")
-    @Excel(name = "物品介绍")
-    @TableField("description")
-    private String description;
-
-    /**
-    * 物品分类
-    */
-    @Schema(description = "物品分类")
-    @Excel(name = "物品分类")
-    @TableField("category_id")
-    private String categoryId;
-
-    /**
-    * 物品价格
-    */
-    @Schema(description = "物品价格")
-    @Excel(name = "物品价格")
-    @TableField("price")
-    private BigDecimal price;
 
     @TableField(exist = false)
     private Map<String,String> params;

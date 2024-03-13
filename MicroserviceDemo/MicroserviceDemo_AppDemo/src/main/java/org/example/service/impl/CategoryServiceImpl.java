@@ -1,8 +1,8 @@
 package org.example.service.impl;
 
-import org.example.domain.Comment;
-import org.example.dao.CommentMapper;
-import org.example.service.ICommentService;
+import org.example.domain.Category;
+import org.example.dao.CategoryMapper;
+import org.example.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -29,59 +29,59 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 商铺分类 服务实现类
  * </p>
  *
  * @author lwx20
  * @since 2024-03-13
  */
 @Service
-public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements ICommentService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements ICategoryService {
 
     @Override
-    public void saveByParam(Comment obj,Map<String, String> params){
+    public void saveByParam(Category obj,Map<String, String> params){
         this.save(obj);
     }
 
     @Override
-    public void updateByParam(Comment obj,Map<String, String> params){
+    public void updateByParam(Category obj,Map<String, String> params){
         this.updateById(obj);
     }
 
     @Override
     public void deleteBy(Map<String, String> params) {
-        QueryWrapper<Comment> query = new QueryWrapper<>();
+        QueryWrapper<Category> query = new QueryWrapper<>();
         if(!query.isEmptyOfWhere()) {
             remove(query);
         }
     }
 
     @Override
-    public List<Comment> selectBy(Map<String, String> params) {
-        QueryWrapper<Comment> query = new QueryWrapper<>();
+    public List<Category> selectBy(Map<String, String> params) {
+        QueryWrapper<Category> query = new QueryWrapper<>();
         return list(query);
     }
 
     @Override
-    public IPage<Comment> selectPage(Map<String, String> params) {
-        Page<Comment> page = PageUtils.pageHandler(params);
-        QueryWrapper<Comment> query = getQuery(params);
-        IPage<Comment> result = this.page(page, query);
+    public IPage<Category> selectPage(Map<String, String> params) {
+        Page<Category> page = PageUtils.pageHandler(params);
+        QueryWrapper<Category> query = getQuery(params);
+        IPage<Category> result = this.page(page, query);
         return result;
     }
 
     @Override
-    public IPage<Comment> selpageCustomSqlByWrapper(Map<String, String> params) {
-        Page<Comment> page = PageUtils.pageHandler(params);
-        QueryWrapper<Comment> query = getQuery(params);
-        IPage<Comment> result = this.baseMapper.selpageCustomSqlByWrapper(page, query);
+    public IPage<Category> selpageCustomSqlByWrapper(Map<String, String> params) {
+        Page<Category> page = PageUtils.pageHandler(params);
+        QueryWrapper<Category> query = getQuery(params);
+        IPage<Category> result = this.baseMapper.selpageCustomSqlByWrapper(page, query);
         return result;
     }
 
     @Override
-    public IPage<Comment> selpageCustomSqlByMap(Map<String, String> params) {
-        Page<Comment> page = PageUtils.pageHandler(params);
-        IPage<Comment> result = this.baseMapper.selpageCustomSqlByMap(page, params);
+    public IPage<Category> selpageCustomSqlByMap(Map<String, String> params) {
+        Page<Category> page = PageUtils.pageHandler(params);
+        IPage<Category> result = this.baseMapper.selpageCustomSqlByMap(page, params);
         return result;
     }
 
@@ -94,9 +94,9 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     */
     @Override
     public void downloadExcelTemplate(HttpServletResponse response, HttpServletRequest request) throws Exception{
-        List<Comment> data = Lists.newArrayList();
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "Comment"), Comment.class, data);
-        String fileName = String.format("Comment_%d.xls", System.currentTimeMillis());
+        List<Category> data = Lists.newArrayList();
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "Category"), Category.class, data);
+        String fileName = String.format("Category_%d.xls", System.currentTimeMillis());
         response.setHeader("Content-Disposition", "attachment;Filename="+ fileName);
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         response.flushBuffer();
@@ -113,7 +113,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         InputStream inputStream = file.getInputStream();
         ImportParams params = new ImportParams();
         // bean 导入
-        List<Comment> dataList = new ExcelImportService().importExcelByIs(inputStream, Comment.class, params, false).getList();
+        List<Category> dataList = new ExcelImportService().importExcelByIs(inputStream, Category.class, params, false).getList();
         this.saveBatch(dataList);
         // map 导入
         // List<Map<String, Object>> maps = ExcelImportUtil.importExcel(inputStream, Map.class, params);
@@ -122,11 +122,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
     @Override
     public void excel(HttpServletResponse response, HttpServletRequest request, Map<String, String> params) throws Exception{
-        QueryWrapper<Comment> query = new QueryWrapper<>();
-        List<Comment> data = list(query);
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "Comment"),
-        Comment.class, data);
-        String fileName = String.format("Comment_%d.xls", System.currentTimeMillis());
+        QueryWrapper<Category> query = new QueryWrapper<>();
+        List<Category> data = list(query);
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "Category"),
+        Category.class, data);
+        String fileName = String.format("Category_%d.xls", System.currentTimeMillis());
         response.setHeader("Content-Disposition", "attachment;Filename="+ fileName);
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         response.flushBuffer();
@@ -138,8 +138,8 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
      * @param params
      * @return
      */
-    private  QueryWrapper<Comment> getQuery(Map<String, String> params){
-        QueryWrapper<Comment> query  = new QueryWrapper<>();
+    private  QueryWrapper<Category> getQuery(Map<String, String> params){
+        QueryWrapper<Category> query  = new QueryWrapper<>();
         if(params==null||params.size()<1) {
             return  query;
         }
@@ -150,20 +150,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             if("id".equals(entry.getKey())){
                 query.eq("id",entry.getValue());
             }
-            if("userId".equals(entry.getKey())){
-                query.eq("user_id",entry.getValue());
+            if("name".equals(entry.getKey())){
+                query.eq("name",entry.getValue());
             }
-            if("shopItemId".equals(entry.getKey())){
-                query.eq("shop_item_id",entry.getValue());
-            }
-            if("content".equals(entry.getKey())){
-                query.eq("content",entry.getValue());
-            }
-            if("releaseTime".equals(entry.getKey())){
-                query.eq("release_time",entry.getValue());
-            }
-            if("parentId".equals(entry.getKey())){
-                query.eq("parent_id",entry.getValue());
+            if("picture".equals(entry.getKey())){
+                query.eq("picture",entry.getValue());
             }
         }
         return  query;

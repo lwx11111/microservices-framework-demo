@@ -1,4 +1,4 @@
-package  org.example.dao;
+package org.example.dao;
 
 import org.example.domain.ShopItem;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -16,7 +16,7 @@ import java.util.Map;
  * </p>
  *
  * @author lwx20
- * @since 2024-02-22
+ * @since 2024-03-13
  */
 @Mapper
 public interface ShopItemMapper extends BaseMapper<ShopItem> {

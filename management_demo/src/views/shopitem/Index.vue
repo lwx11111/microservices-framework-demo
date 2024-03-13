@@ -9,7 +9,7 @@
                 <el-collapse-item name="1">
                     <template #title>
                         <div class="innerHeader">
-                          店铺物品表（只有官方一家店）管理
+                          物品表管理
                         </div>
                     </template>
                     <div style="display: flex;"
@@ -25,30 +25,9 @@
                                             @keyup.enter.native="getData">
                                   </el-input>
                             </el-form-item>
-                            <el-form-item label="物品图片">
-                                <el-input placeholder="请输入物品图片"
-                                            v-model="data.formList.picture"
-                                            style="width: 200px"
-                                            @keyup.enter.native="getData">
-                                  </el-input>
-                            </el-form-item>
-                            <el-form-item label="物品介绍">
-                                <el-input placeholder="请输入物品介绍"
-                                            v-model="data.formList.description"
-                                            style="width: 200px"
-                                            @keyup.enter.native="getData">
-                                  </el-input>
-                            </el-form-item>
                             <el-form-item label="物品分类">
                                 <el-input placeholder="请输入物品分类"
                                             v-model="data.formList.categoryId"
-                                            style="width: 200px"
-                                            @keyup.enter.native="getData">
-                                  </el-input>
-                            </el-form-item>
-                            <el-form-item label="物品价格">
-                                <el-input placeholder="请输入物品价格"
-                                            v-model="data.formList.price"
                                             style="width: 200px"
                                             @keyup.enter.native="getData">
                                   </el-input>
@@ -67,36 +46,24 @@
                         @click="addData()">
                   新增
                 </el-button>
-                <el-button
-                        type="info"
-                        icon="Download"
-                        @click="downloadExcelTemplate()">
-                  下载模板
-                </el-button>
-                <el-button
-                        type="primary"
-                        icon="Upload"
-                        @click="uploadExcel()">
-                  导入
-                </el-button>
+<!--                <el-button-->
+<!--                        type="info"-->
+<!--                        icon="Download"-->
+<!--                        @click="downloadExcelTemplate()">-->
+<!--                  下载模板-->
+<!--                </el-button>-->
+<!--                <el-button-->
+<!--                        type="primary"-->
+<!--                        icon="Upload"-->
+<!--                        @click="uploadExcel()">-->
+<!--                  导入-->
+<!--                </el-button>-->
                 <el-button
                         type="warning"
                         icon="DocumentDelete"
                         @click="deleteDataMany()">
                   删除
                 </el-button>
-                <el-dropdown
-                        style="margin-left:8px;"
-                        split-button
-                        type="primary">
-                    更多功能
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <el-dropdown-item>功能1</el-dropdown-item>
-                            <el-dropdown-item>功能2</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
                 <div style="float:right;">
                     <el-button
                           type="primary"
@@ -110,10 +77,10 @@
                           icon="Close">
                     清空
                     </el-button>
-                    <el-button
-                          @click="excelData()">
-                    导出数据
-                    </el-button>
+<!--                    <el-button-->
+<!--                          @click="excelData()">-->
+<!--                    导出数据-->
+<!--                    </el-button>-->
                 </div>
             </div>
 
@@ -226,19 +193,15 @@
     import { useStore } from "vuex";
     import { useRouter } from 'vue-router'
     import {ElMessage, ElMessageBox} from "element-plus";
-    import axios from 'axios';
-
 
     const store = useStore();
     const router = useRouter()
 
     // Data
     const data = reactive({
-        context: { componentParent: this },// context: 父对象
         screenHeight: window.innerHeight,// screenHeight:控制高度自适应-页面高度
         otherHeight: 310,// otherHeight:控制高度自适应-表格外的高度
         isSearch: false, // isSearch:控制搜索状态
-        detailUrl: '/name/shopitem/item', // detailUrl:详情页面地址
         selectedRows: {}, // selectedRows:选中行对象
         // formList:搜索条件对象 分页控制对象
         formList: {
@@ -250,13 +213,6 @@
         },
         // tableData:表格数据
         tableData: [],
-        // OperatorLogParam:用于记录日志
-        OperatorLogParam: {
-            operateContent: '',
-            operateFeatures: '',
-            operateState: '',
-            operateType: ''
-        },
         activeName: '1',
         // 分页配置
         pageConfig: {
@@ -295,14 +251,6 @@
                 data.pageConfig.total = res.data.total
                 data.isSearch = false
             }
-
-            // 日志记录
-            // data.OperatorLogParam.operateContent = JSON.stringify(params)
-            // data.OperatorLogParam.operateFeatures = '查询列表'
-            // data.OperatorLogParam.operateType = LogType.Query
-            // data.OperatorLogParam.operateState = '成功'
-            // OperatorLog.setOperationLog(this.OperatorLogParam)
-
         })
     }
     // 添加记录
@@ -320,7 +268,7 @@
             const blobUrl = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = blobUrl
-            a.download = '店铺物品表（只有官方一家店）.xls'
+            a.download = '物品.xls'
             a.click()
             window.URL.revokeObjectURL(blobUrl)
         })
@@ -368,13 +316,6 @@
                             message: '删除失败',
                         })
                     }
-
-                    // 日志记录
-                    // this.OperatorLogParam.operateContent = JSON.stringify(dataids)
-                    // this.OperatorLogParam.operateFeatures = '删除记录'
-                    // this.OperatorLogParam.operateType = LogType.Query
-                    // this.OperatorLogParam.operateState = '成功'
-                    // OperatorLog.setOperationLog(this.OperatorLogParam)
                 })
             }).catch(() => {
                 ElMessage({
@@ -476,13 +417,6 @@
                     })
                 }
             })
-
-            // 日志记录
-            // this.OperatorLogParam.operateContent = JSON.stringify(dataids)
-            // this.OperatorLogParam.operateFeatures = '删除记录'
-            // this.OperatorLogParam.operateType = LogType.Query
-            // this.OperatorLogParam.operateState = '成功'
-            // OperatorLog.setOperationLog(this.OperatorLogParam)
         }).catch(() => {
             ElMessage({
                 type: 'info',

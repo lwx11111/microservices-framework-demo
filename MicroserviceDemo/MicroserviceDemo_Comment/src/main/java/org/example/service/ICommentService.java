@@ -1,10 +1,10 @@
 package org.example.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.example.domain.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.domain.Comment;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,10 +16,9 @@ import java.util.Map;
  * </p>
  *
  * @author lwx20
- * @since 2023-12-18
+ * @since 2024-03-13
  */
 public interface ICommentService extends IService<Comment> {
-    Boolean saveComments(Map<String, String> comments) throws Exception;
     /**
      * 根据参数保存
      * @param obj

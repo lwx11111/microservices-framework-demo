@@ -10,6 +10,7 @@ axios.defaults.timeout = 10000 // 超时时间
 
 // 网关地址
 axios.defaults.baseURL = 'http://127.0.0.1:8888';
+// axios.defaults.baseURL = 'http://43.138.149.121:8888';
 // 整理数据
 axios.defaults.transformRequest = function(data) {
     return data
@@ -19,20 +20,20 @@ axios.defaults.transformRequest = function(data) {
 axios.interceptors.request.use(
     config => {
         // 网关跨域问题解决不了了
-        if (config.url.includes("app")){
-            config.baseURL = 'http://127.0.0.1:7000'
-            config.url = config.url.replace("app", "")
-        }
-
-        if (config.url.includes("user")){
-            config.baseURL = 'http://127.0.0.1:8000'
-            config.url = config.url.replace("user", "")
-        }
-
-        if (config.url.includes("comment")){
-            config.baseURL = 'http://127.0.0.1:8001'
-            config.url = config.url.replace("comment", "")
-        }
+        // if (config.url.includes("app")){
+        //     config.baseURL = 'http://127.0.0.1:7000'
+        //     config.url = config.url.replace("app", "")
+        // }
+        //
+        // if (config.url.includes("user")){
+        //     config.baseURL = 'http://127.0.0.1:8000'
+        //     config.url = config.url.replace("user", "")
+        // }
+        //
+        // if (config.url.includes("comment")){
+        //     config.baseURL = 'http://127.0.0.1:8001'
+        //     config.url = config.url.replace("comment", "")
+        // }
 
 
         if (config.type === 'form'){

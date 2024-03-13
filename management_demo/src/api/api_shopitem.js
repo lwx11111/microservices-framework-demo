@@ -3,12 +3,6 @@ const serverName = 'app'
 
 
 export default {
-  test(){
-    return request({
-      url: '/shopitem/1',
-      method: 'get',
-    })
-  },
 
   // 分页查询
   selpage4shopitem(data) {

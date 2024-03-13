@@ -49,5 +49,9 @@ spring:
           uri: lb://uaa # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
           predicates:
             - Path=/uaa/**
+        - id: comment
+          uri: lb://comment # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=/comment/**
 
 

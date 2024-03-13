@@ -15,52 +15,20 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item
-                                label="用户ID"
-                                prop="userId">
+                                label="分类名"
+                                prop="name">
                             <el-input
-                                    v-model="data.item.userId"
+                                    v-model="data.item.name"
                                     :disabled="data.disabled">
                             </el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item
-                                label="商品ID"
-                                prop="shopItemId">
+                                label="图片"
+                                prop="picture">
                             <el-input
-                                    v-model="data.item.shopItemId"
-                                    :disabled="data.disabled">
-                            </el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item
-                                label="内容"
-                                prop="content">
-                            <el-input
-                                    v-model="data.item.content"
-                                    :disabled="data.disabled">
-                            </el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item
-                                label="时间"
-                                prop="releaseTime">
-                            <el-input
-                                    v-model="data.item.releaseTime"
-                                    :disabled="data.disabled">
-                            </el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="6">
-                        <el-form-item
-                                label="回复id"
-                                prop="parentId">
-                            <el-input
-                                    v-model="data.item.parentId"
+                                    v-model="data.item.picture"
                                     :disabled="data.disabled">
                             </el-input>
                         </el-form-item>
@@ -87,7 +55,7 @@
     </el-dialog>
 </template>
 <script lang="ts" setup>
-    import Api from '@/api/api_comment.js'
+    import Api from '@/api/api_category.js'
     import { reactive, ref, onMounted, toRefs } from 'vue'
     import { useStore } from "vuex";
     import { useRouter } from 'vue-router'
@@ -106,28 +74,16 @@
         item: {},
         params: {
             id: '',
-            userId: '',
-            shopItemId: '',
-            content: '',
-            releaseTime: '',
-            parentId: ''
+            name: '',
+            picture: ''
         },
         showDialog: false,
         rules: {
-          userId: [
-              { required: true, message: '用户ID不能为空', trigger: 'blur' }
+          name: [
+              { required: true, message: '分类名不能为空', trigger: 'blur' }
           ],
-          shopItemId: [
-              { required: true, message: '商品ID不能为空', trigger: 'blur' }
-          ],
-          content: [
-              { required: true, message: '内容不能为空', trigger: 'blur' }
-          ],
-          releaseTime: [
-              { required: true, message: '时间不能为空', trigger: 'blur' }
-          ],
-          parentId: [
-              { required: true, message: '回复id不能为空', trigger: 'blur' }
+          picture: [
+              { required: true, message: '图片不能为空', trigger: 'blur' }
           ]
         },
     })
@@ -181,7 +137,7 @@
                 return;
             }
             // 发送请求
-            Api.sel4comment(data.id).then(res => {
+            Api.sel4category(data.id).then(res => {
                 console.log(res)
                 if (res.code === 200){
                     data.item = res.data;
@@ -232,7 +188,7 @@
     const saveOrUpdate = () => {
         // 保存或更新操作
         if (data.type === 'update') {
-            Api.update4comment(data.id, data.item).then(res => {
+            Api.update4category(data.id, data.item).then(res => {
                 if (res.code === 200){
                     ElMessage({
                       message: '修改成功',
@@ -247,7 +203,7 @@
                 }
             })
         } else if (data.type === 'add') {
-            Api.add4comment(data.item).then(res => {
+            Api.add4category(data.item).then(res => {
                 console.log(res)
                 if (res.code === 200){
                     ElMessage({

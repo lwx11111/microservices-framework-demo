@@ -1,8 +1,9 @@
 <template>
     <el-dialog v-model="data.showDialog"
                destroy-on-close
-            width="90%"
-            :title="data.operateTitle">
+               :before-close="handleDialogClose"
+                width="90%"
+                :title="data.operateTitle">
         <el-card style="border: 1px solid gold;"
                  class="box-card"
                  shadow="never">
@@ -86,24 +87,17 @@
     // Data
     const data = reactive({
         operateTitle: '新增',
-        backUrl: '/name/user/index',
         type: '',
         showBtn: true,
         disabled: false,
         id: 0,
         item: {},
         params: {
-        id: '',
-        name: '',
-        password: '',
-        nickname: '',
-        avatar: ''
-        },
-        OperatorLogParam: {
-          operateContent: '',
-          operateFeatures: '',
-          operateState: '',
-          operateType: ''
+            id: '',
+            name: '',
+            password: '',
+            nickname: '',
+            avatar: ''
         },
         showDialog: false,
         rules: {
@@ -190,21 +184,12 @@
             data.showDialog = true;
         }
 
-        //菜单界面生成时日志记录
-        // const islog = Vue.prototype.$config.ISLOG;
-        // if (true==islog){
-        //     data.OperatorLogParam.operateFeatures = '详情表单'
-        //     data.OperatorLogParam.operateType = LogType.Query
-        //     data.OperatorLogParam.operateState = '成功'
-        //     OperatorLog.setOperationLog(data.OperatorLogParam)
-        // }
-
     }
+
     const back = () => {
         // 返回操作
         data.showDialog = false;
         location.reload()
-        // router.push("/logs/account-change-pass-log");
     }
 
     // 表单ref
@@ -261,6 +246,25 @@
                     })
                 }
             })
+        }
+    }
+
+    /**
+     * 关闭弹窗前的操作
+     */
+    const handleDialogClose = () => {
+        if (data.type === 'add' || data.type === 'update') {
+            ElMessageBox.confirm('确认关闭？ 数据将不会保存')
+                    .then(() => {
+                        data.item = {};
+                        data.params = {};
+                        data.showDialog = false;
+                    })
+                    .catch(() => {
+
+                    });
+        } else {
+            data.showDialog = false;
         }
     }
 

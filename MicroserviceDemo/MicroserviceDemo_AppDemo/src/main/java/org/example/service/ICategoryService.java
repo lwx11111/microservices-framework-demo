@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.domain.ShopItem;
+import org.example.domain.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,20 +12,20 @@ import java.util.Map;
 
 /**
  * <p>
- * 店铺物品表（只有官方一家店） 服务类
+ * 商铺分类 服务类
  * </p>
  *
  * @author lwx20
  * @since 2024-03-13
  */
-public interface IShopItemService extends IService<ShopItem> {
+public interface ICategoryService extends IService<Category> {
     /**
      * 根据参数保存
      * @param obj
      * @param params
      * @return: void
      */
-    void saveByParam(ShopItem obj,Map<String, String> params);
+    void saveByParam(Category obj,Map<String, String> params);
 
     /**
      * 根据参数更新
@@ -33,7 +33,7 @@ public interface IShopItemService extends IService<ShopItem> {
      * @param params
      * @return: void
      */
-    void updateByParam(ShopItem obj,Map<String, String> params);
+    void updateByParam(Category obj,Map<String, String> params);
     /**
      * 根据条件删除
      *
@@ -46,33 +46,33 @@ public interface IShopItemService extends IService<ShopItem> {
      * 根据条件查询
      *
      * @param params
-     * @return: List<ShopItem>
+     * @return: List<Category>
      */
-     List<ShopItem> selectBy(Map<String, String> params);
+     List<Category> selectBy(Map<String, String> params);
 
     /**
      * 分页查询
      *
      * @param params
-     * @return: IPage<ShopItem>
+     * @return: IPage<Category>
     */
-    IPage<ShopItem> selectPage(Map<String, String> params);
+    IPage<Category> selectPage(Map<String, String> params);
 
     /**
      * 分页查询-自定义sql-Wrapper
      *
      * @param params
-     * @return: IPage<ShopItem>
+     * @return: IPage<Category>
     */
-    IPage<ShopItem> selpageCustomSqlByWrapper(Map<String, String> params);
+    IPage<Category> selpageCustomSqlByWrapper(Map<String, String> params);
 
     /**
      * 分页查询-自定义sql-Map
      *
      * @param params
-     * @return: IPage<ShopItem>
+     * @return: IPage<Category>
     */
-    IPage<ShopItem> selpageCustomSqlByMap(Map<String, String> params);
+    IPage<Category> selpageCustomSqlByMap(Map<String, String> params);
 
     /**
      * 下载excel模板

@@ -1,23 +1,8 @@
 import request from '@/utils/request'
-const serverName = 'user'
+const serverName = 'uaa'
 
 
 export default {
-  register(data) {
-    return request({
-      url: serverName + '/user/register',
-      method: 'post',
-      data: data
-    })
-  },
-
-  login(data) {
-    return request({
-      url: serverName + '/user/login',
-      method: 'post',
-      data: data
-    })
-  },
 
   // 分页查询
   selpage4user(data) {

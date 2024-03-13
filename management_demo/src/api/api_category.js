@@ -1,58 +1,58 @@
 import request from '@/utils/request'
-const serverName = 'comment'
+const serverName = 'app'
 
 
 export default {
 
   // 分页查询
-  selpage4comment(data) {
+  selpage4category(data) {
     return request({
-      url: serverName + '/comment/selpage',
+      url: serverName + '/category/selpage',
       method: 'post',
       data: data
     })
   },
 
   // 添加
-  add4comment(obj) {
+  add4category(obj) {
     return request({
-      url: serverName + '/comment',
+      url: serverName + '/category',
       method: 'post',
       data: obj
     })
   },
 
   // 修改
-  update4comment(id, obj) {
+  update4category(id, obj) {
     return request({
-      url: serverName + '/comment/' + id,
+      url: serverName + '/category/' + id,
       method: 'put',
       data: obj
     })
   },
 
   // 删除单条
-  del4comment(id) {
+  del4category(id) {
     return request({
-      url: serverName + '/comment/' + id,
+      url: serverName + '/category/' + id,
       method: 'delete',
     })
   },
 
 
   // 删除多条
-  dels4comment(ids) {
+  dels4category(ids) {
     return request({
-      url: serverName + '/comment/dels',
+      url: serverName + '/category/dels',
       method: 'post',
       data: ids
     })
   },
 
   // 查询单条
-  sel4comment(id) {
+  sel4category(id) {
     return request({
-      url: serverName + '/comment/' + id,
+      url: serverName + '/category/' + id,
       method: 'get',
     })
 
@@ -61,7 +61,7 @@ export default {
   // 下载Excel模板
   downloadExcelTemplate(params) {
     return request({
-      url: serverName + '/comment/downloadExcelTemplate',
+      url: serverName + '/category/downloadExcelTemplate',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'
@@ -71,16 +71,16 @@ export default {
   // 导入Excel接口URL
   uploadExcelUrl() {
     return request({
-      url: serverName + '/comment/uploadExcel',
+      url: serverName + '/category/uploadExcel',
       type: 'form',
       method: 'post',
     })
 
   },
   // 导出Excel
-  excelData4comment(params) {
+  excelData4category(params) {
     return request({
-      url: serverName + '/comment/excel',
+      url: serverName + '/category/excel',
       method: 'post',
       data: params,
       responseType: 'arraybuffer'

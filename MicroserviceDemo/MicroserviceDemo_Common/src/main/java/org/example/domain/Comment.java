@@ -1,28 +1,28 @@
 package org.example.domain;
 
-import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import java.time.LocalDateTime;
 import java.util.Map;
-
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author lwx20
- * @since 2023-12-18
+ * @since 2024-03-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -50,32 +50,8 @@ public class Comment extends Model<Comment> {
     */
     @Schema(description = "商品ID")
     @Excel(name = "商品ID")
-    @TableField("shop_id")
-    private String shopId;
-
-    /**
-    * 订单ID
-    */
-    @Schema(description = "订单ID")
-    @Excel(name = "订单ID")
-    @TableField("order_id")
-    private String orderId;
-
-    /**
-    * 骑手ID
-    */
-    @Schema(description = "骑手ID")
-    @Excel(name = "骑手ID")
-    @TableField("rider_id")
-    private String riderId;
-
-    /**
-    * 用户名
-    */
-    @Schema(description = "用户名")
-    @Excel(name = "用户名")
-    @TableField("user_name")
-    private String userName;
+    @TableField("shop_item_id")
+    private String shopItemId;
 
     /**
     * 内容

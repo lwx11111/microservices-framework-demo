@@ -9,7 +9,7 @@
                 <el-collapse-item name="1">
                     <template #title>
                         <div class="innerHeader">
-                          评论管理
+                          管理
                         </div>
                     </template>
                     <div style="display: flex;"
@@ -25,23 +25,9 @@
                                             @keyup.enter.native="getData">
                                   </el-input>
                             </el-form-item>
-                            <el-form-item label="商家ID">
-                                <el-input placeholder="请输入商家ID"
-                                            v-model="data.formList.shopId"
-                                            style="width: 200px"
-                                            @keyup.enter.native="getData">
-                                  </el-input>
-                            </el-form-item>
-                            <el-form-item label="订单ID">
-                                <el-input placeholder="请输入订单ID"
-                                            v-model="data.formList.orderId"
-                                            style="width: 200px"
-                                            @keyup.enter.native="getData">
-                                  </el-input>
-                            </el-form-item>
-                            <el-form-item label="骑手ID">
-                                <el-input placeholder="请输入骑手ID"
-                                            v-model="data.formList.riderId"
+                            <el-form-item label="商品ID">
+                                <el-input placeholder="请输入商品ID"
+                                            v-model="data.formList.shopItemId"
                                             style="width: 200px"
                                             @keyup.enter.native="getData">
                                   </el-input>
@@ -55,23 +41,19 @@
             <!-- 操作按钮区 -->
             <div style="margin:10px 0;">
                 <el-button
-                        type="info"
-                        icon="Download"
-                        @click="downloadExcelTemplate()">
-                  下载模板
+                        type="success"
+                        icon="DocumentAdd"
+                        @click="addData()">
+                  新增
                 </el-button>
-                <el-button
-                        type="primary"
-                        icon="Upload"
-                        @click="uploadExcel()">
-                  导入
-                </el-button>
+
                 <el-button
                         type="warning"
                         icon="DocumentDelete"
                         @click="deleteDataMany()">
                   删除
                 </el-button>
+
                 <div style="float:right;">
                     <el-button
                           type="primary"
@@ -85,10 +67,7 @@
                           icon="Close">
                     清空
                     </el-button>
-                    <el-button
-                          @click="excelData()">
-                    导出数据
-                    </el-button>
+
                 </div>
             </div>
 
@@ -119,26 +98,8 @@
                         align="center">
                 </el-table-column>
                  <el-table-column
-                        prop="shopId"
+                        prop="shopItemId"
                         label="商品ID"
-                        width="180"
-                        align="center">
-                </el-table-column>
-                 <el-table-column
-                        prop="orderId"
-                        label="订单ID"
-                        width="180"
-                        align="center">
-                </el-table-column>
-                 <el-table-column
-                        prop="riderId"
-                        label="骑手ID"
-                        width="180"
-                        align="center">
-                </el-table-column>
-                 <el-table-column
-                        prop="userName"
-                        label="用户名"
                         width="180"
                         align="center">
                 </el-table-column>
@@ -166,6 +127,14 @@
                         align="center"
                         width="400">
                     <template #default="scope">
+                        <el-link
+                                style="margin-right: 20px"
+                                @click="toUpdate(scope)"
+                                type="primary"
+                                size="small"
+                                :underline="false">
+                          更新
+                        </el-link>
                         <el-link
                                 style="margin-right: 20px"
                                 @click="toDetail(scope)"
@@ -217,32 +186,20 @@
 
     // Data
     const data = reactive({
-        context: { componentParent: this },// context: 父对象
         screenHeight: window.innerHeight,// screenHeight:控制高度自适应-页面高度
         otherHeight: 310,// otherHeight:控制高度自适应-表格外的高度
         isSearch: false, // isSearch:控制搜索状态
-        detailUrl: '/name/comment/item', // detailUrl:详情页面地址
         selectedRows: {}, // selectedRows:选中行对象
         // formList:搜索条件对象 分页控制对象
         formList: {
             userId: '',
-            shopId: '',
-            orderId: '',
-            riderId: '',
-            userName: '',
+            shopItemId: '',
             content: '',
             releaseTime: '',
             parentId: ''
         },
         // tableData:表格数据
         tableData: [],
-        // OperatorLogParam:用于记录日志
-        OperatorLogParam: {
-            operateContent: '',
-            operateFeatures: '',
-            operateState: '',
-            operateType: ''
-        },
         activeName: '1',
         // 分页配置
         pageConfig: {
@@ -259,20 +216,6 @@
     // Mounted
     onMounted(() => {
         getData();
-        // window.onresize = () => {
-        //     return (() => {
-        //         data.screenHeight = window.innerHeight
-        //     })()
-        // }
-
-        // 菜单界面生成时日志记录
-        // const islog = Vue.prototype.$config.ISLOG;
-        // if (true==islog){
-        //     this.OperatorLogParam.operateFeatures = '菜单点击'
-        //     this.OperatorLogParam.operateType = LogType.Query
-        //     this.OperatorLogParam.operateState = '成功'
-        //     OperatorLog.setOperationLog(this.OperatorLogParam)
-        // }
     })
 
     // Methods
@@ -281,10 +224,7 @@
         // 查询参数
         const params = {
             userId : data.formList.userId,
-            shopId : data.formList.shopId,
-            orderId : data.formList.orderId,
-            riderId : data.formList.riderId,
-            userName : data.formList.userName,
+            shopItemId : data.formList.shopItemId,
             content : data.formList.content,
             releaseTime : data.formList.releaseTime,
             parentId : data.formList.parentId,
@@ -298,18 +238,14 @@
                 data.pageConfig.total = res.data.total
                 data.isSearch = false
             }
-
-            // 日志记录
-            // data.OperatorLogParam.operateContent = JSON.stringify(params)
-            // data.OperatorLogParam.operateFeatures = '查询列表'
-            // data.OperatorLogParam.operateType = LogType.Query
-            // data.OperatorLogParam.operateState = '成功'
-            // OperatorLog.setOperationLog(this.OperatorLogParam)
-
         })
     }
     // 添加记录
     const itemDialog = ref();
+    const addData = () => {
+        data.type = "add";
+        itemDialog.value.init(null,data.type);
+    }
     // 下载模板
     const downloadExcelTemplate = () => {
         const params = {}
@@ -367,13 +303,6 @@
                             message: '删除失败',
                         })
                     }
-
-                    // 日志记录
-                    // this.OperatorLogParam.operateContent = JSON.stringify(dataids)
-                    // this.OperatorLogParam.operateFeatures = '删除记录'
-                    // this.OperatorLogParam.operateType = LogType.Query
-                    // this.OperatorLogParam.operateState = '成功'
-                    // OperatorLog.setOperationLog(this.OperatorLogParam)
                 })
             }).catch(() => {
                 ElMessage({
@@ -439,6 +368,11 @@
         // 选中行变化事件
         data.selectedRows = val
     }
+
+    const toUpdate = (scope) => {
+        data.type = "update"
+        itemDialog.value.init(scope.row.id, data.type);
+    }
     const toDetail = (scope) => {
         data.type = "detail"
         itemDialog.value.init(scope.row.id, data.type);
@@ -470,13 +404,6 @@
                     })
                 }
             })
-
-            // 日志记录
-            // this.OperatorLogParam.operateContent = JSON.stringify(dataids)
-            // this.OperatorLogParam.operateFeatures = '删除记录'
-            // this.OperatorLogParam.operateType = LogType.Query
-            // this.OperatorLogParam.operateState = '成功'
-            // OperatorLog.setOperationLog(this.OperatorLogParam)
         }).catch(() => {
             ElMessage({
                 type: 'info',
