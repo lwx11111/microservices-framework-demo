@@ -1,9 +1,13 @@
 package org.example.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import jakarta.annotation.Resource;
+import org.example.annotation.Logs;
+import org.example.redis.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 import org.example.web.SimpleResponse;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,9 +35,13 @@ public class CommentController {
     @Autowired
     private ICommentService service;
 
+    @Resource
+    private RedisTemplate redisTemplate;
+
     @PostMapping
     @ResponseBody
     @Operation(description = "创建")
+    @Logs
     public SimpleResponse save(@RequestBody Comment obj){
         SimpleResponse response = new SimpleResponse();
         try {
@@ -82,7 +90,16 @@ public class CommentController {
     public SimpleResponse select(@PathVariable(name = "id") String id) {
         SimpleResponse response = new SimpleResponse();
         try {
-            response.setData(service.getById(id));
+            // 先从缓存查
+            if(redisTemplate.opsForHash().hasKey(RedisKey.COMMENT_HASH, id)){
+                response.setData(redisTemplate.opsForHash().get(RedisKey.COMMENT_HASH, id));
+            } else {
+                // 查不到缓存进去
+                Comment comment = service.getById(id);
+                redisTemplate.opsForHash().put(RedisKey.COMMENT_HASH, id, comment);
+                response.setData(comment);
+            }
+
         } catch (Exception e) {
             response.setCode(500);
             response.setMessage(e.getMessage());

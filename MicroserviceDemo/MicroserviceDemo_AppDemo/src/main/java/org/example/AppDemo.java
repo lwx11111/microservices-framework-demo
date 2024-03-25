@@ -11,7 +11,6 @@ import org.springframework.statemachine.config.EnableStateMachine;
 @EnableDiscoveryClient
 @EnableFeignClients
 @MapperScan(basePackages = "org.example.dao")
-@EnableStateMachine
 public class AppDemo
 {
     public static void main( String[] args )
