@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card style="margin: 10px; border: 1px solid gold">
+        <el-card style="margin: 10px;">
             <!-- 查询条件 -->
             <el-collapse
                     accordion
@@ -30,7 +30,7 @@
                 </el-collapse-item>
             </el-collapse>
         </el-card>
-        <el-card style="margin: 10px; border: 1px solid gold">
+        <el-card style="margin: 10px;">
             <!-- 操作按钮区 -->
             <div style="margin:10px 0;">
                 <el-button

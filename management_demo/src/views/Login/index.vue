@@ -7,7 +7,7 @@
                       class="input-item"
                       placeholder="用户名">
                 <template #prefix>
-                    <el-icon style="color: gold"><Avatar /></el-icon>
+                    <el-icon style="color: blue"><Avatar /></el-icon>
                 </template>
             </el-input>
             <el-input v-model="form.password"
@@ -15,12 +15,12 @@
                       class="input-item"
                       show-password>
                 <template #prefix>
-                    <el-icon style="color: gold"><Lock /></el-icon>
+                    <el-icon style="color: blue"><Lock /></el-icon>
                 </template>
             </el-input>
 
             <el-button style="width: 100%; height: 45px;"
-                       type="primary"
+                       type="warning"
                        @click="onSubmit()">
                 登录
             </el-button>

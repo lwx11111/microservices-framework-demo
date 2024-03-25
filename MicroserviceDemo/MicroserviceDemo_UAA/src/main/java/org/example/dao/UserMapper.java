@@ -15,7 +15,7 @@ import java.util.Map;
  *  Mapper 接口
  * </p>
  *
- * @author lwx20
+ * @author ljc
  * @since 2024-02-22
  */
 @Mapper

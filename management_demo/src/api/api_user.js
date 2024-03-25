@@ -3,6 +3,13 @@ const serverName = 'uaa'
 
 
 export default {
+  login(data) {
+    return request({
+      url: serverName + '/user/login',
+      method: 'post',
+      data: data
+    })
+  },
 
   // 分页查询
   selpage4user(data) {

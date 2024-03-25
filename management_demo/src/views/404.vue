@@ -1,11 +1,11 @@
 <template>
   <div>
-      <el-card style="margin: 10px; border: 1px solid gold">
+      <el-card style="margin: 10px; >
           <h1>
               404
           </h1>
       </el-card>
-      <el-card style="margin: 10px; border: 1px solid gold"></el-card>
+      <el-card style="margin: 10px;"></el-card>
   </div>
 </template>
 

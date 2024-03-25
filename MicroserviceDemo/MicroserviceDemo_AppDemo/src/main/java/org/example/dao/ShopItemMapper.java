@@ -15,7 +15,7 @@ import java.util.Map;
  * 店铺物品表（只有官方一家店） Mapper 接口
  * </p>
  *
- * @author lwx20
+ * @author ljc
  * @since 2024-03-13
  */
 @Mapper

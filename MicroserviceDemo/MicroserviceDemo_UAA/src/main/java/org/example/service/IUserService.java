@@ -15,7 +15,7 @@ import java.util.Map;
  *  服务类
  * </p>
  *
- * @author lwx20
+ * @author ljc
  * @since 2024-02-22
  */
 public interface IUserService extends IService<User> {

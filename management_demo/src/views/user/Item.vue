@@ -4,7 +4,7 @@
                :before-close="handleDialogClose"
                 width="90%"
                 :title="data.operateTitle">
-        <el-card style="border: 1px solid gold;"
+        <el-card
                  class="box-card"
                  shadow="never">
             <el-form

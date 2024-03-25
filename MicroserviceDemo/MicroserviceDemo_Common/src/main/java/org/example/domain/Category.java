@@ -20,7 +20,7 @@ import java.util.Map;
  * 商铺分类
  * </p>
  *
- * @author lwx20
+ * @author ljc
  * @since 2024-03-13
  */
 @Data
