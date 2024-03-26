@@ -6,9 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.Map;
 
-/**
- * Date: 2023/8/25 10:30
- * @Description: 分页参数处理
+/**分页参数处理
  */
 public class PageUtils {
 

@@ -1,11 +1,6 @@
 package org.example.annotation;
 
 import java.lang.annotation.*;
-
-/**
- * @Author 刘文轩
- * @Date 2024/3/25 11:42
- */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
