@@ -15,7 +15,7 @@
         :file-list="data.files"
         :auto-upload="true"
         :action="data.url"
-        :data="data"
+        :data="data.data"
         :headers="data.headers"
         :on-change="handleChange"
         :before-upload="handleBeforeUpload"
@@ -80,11 +80,13 @@ const props = defineProps({
 
 // Methods
 const init = (action = '/api/sysossfile/uploadOSS') => {
+    console.log(action)
     data.visible = true
     data.uploadStatus = false
     data.drag = true
     data.files = []
-    data.url = '/api/' + action + '?_=' + new Date().getTime()
+    data.url = "http://localhost:8888/" + action + '?_=' + new Date().getTime()
+    console.log(data.url)
     if (action === '/api/sysossfile/uploadOSS') {
         data.oss = true
         getFiles()
@@ -144,26 +146,28 @@ const handleProcess = (event, file, fileList) => {
 // 上传成功回调函数
 // 对象存储：提示成功，并更新文件列表、groupId，同时返回 response，调用回调函数，由调用者处理
 // excel导入：只返回 response，调用回调函数，由调用者处理
+const emits = defineEmits(["callback"]);
 const handleSucess = (response, file, fileList) => {
     data.uploadStatus = false
-    if(response.data !==null && response.data.result !==undefined) {
-        if (response.data.result == 'true') {
-            data.data.groupId = response.data.groupId
-            getFiles()
-            ElMessage({
-                message: '上传成功',
-                type: 'success',
-            })
-            // data.$emit('changeGroupId', response.data.groupId)
-        } else if (response.data.result == 'false') {
-            getFiles()
-            ElMessage({
-                message: '失败',
-                type: 'warning',
-            })
-        }
-    }
-    // data.$emit('callback', 'put', true, data.data.groupId, response)
+    console.log(response)
+    // if(response.data !==null && response.data.result !==undefined) {
+    //     if (response.data.result == 'true') {
+    //         data.data.groupId = response.data.groupId
+    //         getFiles()
+    //         ElMessage({
+    //             message: '上传成功',
+    //             type: 'success',
+    //         })
+    //         // data.$emit('changeGroupId', response.data.groupId)
+    //     } else if (response.data.result == 'false') {
+    //         getFiles()
+    //         ElMessage({
+    //             message: '失败',
+    //             type: 'warning',
+    //         })
+    //     }
+    // }
+    emits('callback', 'put', true, data.data.groupId, response)
 }
 
 // 上传失败的回调函数

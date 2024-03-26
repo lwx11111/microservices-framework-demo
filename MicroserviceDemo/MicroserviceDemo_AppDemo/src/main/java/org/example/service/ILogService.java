@@ -15,7 +15,7 @@ import java.util.Map;
  *  服务类
  * </p>
  *
- * @author lwx20
+ * @author ljc
  * @since 2024-03-25
  */
 public interface ILogService extends IService<Log> {

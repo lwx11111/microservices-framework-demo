@@ -70,12 +70,7 @@ export default {
 
   // 导入Excel接口URL
   uploadExcelUrl() {
-    return request({
-      url: serverName + '/comment/uploadExcel',
-      type: 'form',
-      method: 'post',
-    })
-
+    return serverName + '/comment/uploadExcel';
   },
   // 导出Excel
   excelData4comment(params) {

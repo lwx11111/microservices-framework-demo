@@ -1,7 +1,7 @@
 package org.example.web;
 
 /**
- * @Author: lwx
+@author ljc
  */
 public class SimpleResponse {
     private Integer code = 200;

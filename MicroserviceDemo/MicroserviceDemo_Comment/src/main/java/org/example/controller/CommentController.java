@@ -2,7 +2,6 @@ package org.example.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import jakarta.annotation.Resource;
-import org.example.annotation.Logs;
 import org.example.redis.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
@@ -41,7 +40,6 @@ public class CommentController {
     @PostMapping
     @ResponseBody
     @Operation(description = "创建")
-    @Logs
     public SimpleResponse save(@RequestBody Comment obj){
         SimpleResponse response = new SimpleResponse();
         try {
