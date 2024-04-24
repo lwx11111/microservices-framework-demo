@@ -46,7 +46,18 @@
                         @click="addData()">
                   新增
                 </el-button>
-
+                <el-button
+                    type="info"
+                    icon="Download"
+                    @click="downloadExcelTemplate()">
+                    下载模板
+                </el-button>
+                <el-button
+                    type="primary"
+                    icon="Upload"
+                    @click="uploadExcel()">
+                    导入
+                </el-button>
                 <el-button
                         type="warning"
                         icon="DocumentDelete"
@@ -67,7 +78,10 @@
                           icon="Close">
                     清空
                     </el-button>
-
+                    <el-button
+                            @click="excelData()">
+                        导出数据
+                    </el-button>
                 </div>
             </div>
 
@@ -246,12 +260,13 @@
         data.type = "add";
         itemDialog.value.init(null,data.type);
     }
+
     // 下载模板
     const downloadExcelTemplate = () => {
         const params = {}
         Api.downloadExcelTemplate(params).then(data => {
             console.log(data)
-            const blob = new Blob([data], { type: 'application/vnd.ms-excel' })
+            const blob = new Blob([data.data], { type: 'application/vnd.ms-excel' })
             const blobUrl = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = blobUrl
@@ -264,8 +279,8 @@
     // 导入数据
     const uploadExcelRef = ref();
     const uploadExcel = () => {
-        // const uploadExcelUrl = Api.uploadExcelUrl();
-        uploadExcelRef.value.init(this.SHOP_SERVER + '/comment/uploadExcel');
+        const uploadExcelUrl = Api.uploadExcelUrl();
+        uploadExcelRef.value.init(uploadExcelUrl);
     }
 
     const deleteDataMany = () => {
@@ -330,7 +345,7 @@
     const excelData = () => {
         const params = {}
         Api.excelData4comment(params).then(data => {
-            const blob = new Blob([data], { type: 'application/vnd.ms-excel' })
+            const blob = new Blob([data.data], { type: 'application/vnd.ms-excel' })
             const blobUrl = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = blobUrl
@@ -347,23 +362,19 @@
      @param response: 响应内容
      **/
     const uploadExcelCallback = (action, status, groupId, response) =>{
-        console.log("Success")
-        // if (action === 'put' && status) {
-        //     this.$notify({
-        //         type: 'success',
-        //         title: '导入成功',
-        //         message: response.message,
-        //         duration: 5000
-        //     })
-        // } else {
-        //     this.$notify({
-        //         type: 'error',
-        //         title: '导入失败',
-        //         message: response.message,
-        //         duration: 5000
-        //     })
-        // }
+        if (action === 'put' && status) {
+            ElMessage.success({
+                message: '导入成功',
+                type: 'success',
+            })
+        } else {
+            ElMessage.warning({
+                message: '导入失败',
+                type: 'warning',
+            })
+        }
     }
+
     const selectionChanged = (val: number) => {
         // 选中行变化事件
         data.selectedRows = val

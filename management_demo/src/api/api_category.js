@@ -70,13 +70,9 @@ export default {
 
   // 导入Excel接口URL
   uploadExcelUrl() {
-    return request({
-      url: serverName + '/category/uploadExcel',
-      type: 'form',
-      method: 'post',
-    })
-
+    return serverName + '/category/uploadExcel';
   },
+
   // 导出Excel
   excelData4category(params) {
     return request({

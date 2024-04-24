@@ -21,9 +21,12 @@ import com.google.common.collect.Lists;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.imports.ExcelImportService;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import org.example.utils.PageUtils;
 
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -96,11 +99,15 @@ public class ShopItemServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> i
     public void downloadExcelTemplate(HttpServletResponse response, HttpServletRequest request) throws Exception{
         List<ShopItem> data = Lists.newArrayList();
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "ShopItem"), ShopItem.class, data);
+        OutputStream out = response.getOutputStream();
+        response.setCharacterEncoding("UTF-8");
         String fileName = String.format("ShopItem_%d.xls", System.currentTimeMillis());
-        response.setHeader("Content-Disposition", "attachment;Filename="+ fileName);
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
-        response.flushBuffer();
-        workbook.write(response.getOutputStream());
+        response.setHeader("content-Type", "application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        workbook.write(baos);
+        response.setHeader("Content-Length", String.valueOf(baos.size()));
+        out.write( baos.toByteArray() );
     }
 
     /**
@@ -124,13 +131,17 @@ public class ShopItemServiceImpl extends ServiceImpl<ShopItemMapper, ShopItem> i
     public void excel(HttpServletResponse response, HttpServletRequest request, Map<String, String> params) throws Exception{
         QueryWrapper<ShopItem> query = new QueryWrapper<>();
         List<ShopItem> data = list(query);
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "ShopItem"),
-        ShopItem.class, data);
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "ShopItem"), ShopItem.class, data);
+        OutputStream out = response.getOutputStream();
         String fileName = String.format("ShopItem_%d.xls", System.currentTimeMillis());
+        response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-Disposition", "attachment;Filename="+ fileName);
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("content-Type", "application/vnd.ms-excel");
         response.flushBuffer();
-        workbook.write(response.getOutputStream());
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        workbook.write(baos);
+        response.setHeader("Content-Length", String.valueOf(baos.size()));
+        out.write( baos.toByteArray() );
     }
 
     /**
