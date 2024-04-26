@@ -1,0 +1,16 @@
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\controller\CategoryController.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\impl\CategoryServiceImpl.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\aop\LogsAspect.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\ICategoryService.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\dao\ShopItemMapper.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\ILogService.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\feign\UserFeignApi.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\impl\LogServiceImpl.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\feign\fallback\UserFeignFallback.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\AppDemo.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\annotation\Logs.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\dao\LogMapper.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\dao\CategoryMapper.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\impl\ShopItemServiceImpl.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\service\IShopItemService.java
+D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_AppDemo\src\main\java\org\example\controller\ShopItemController.java

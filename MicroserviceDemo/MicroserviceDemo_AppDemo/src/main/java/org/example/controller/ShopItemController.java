@@ -1,6 +1,8 @@
 package org.example.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.example.rabbitMQ.RabbitmqConfig;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 import org.example.web.SimpleResponse;
@@ -31,13 +33,17 @@ public class ShopItemController {
     @Autowired
     private IShopItemService service;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @PostMapping
     @ResponseBody
     @Operation(description = "创建店铺物品表（只有官方一家店）")
     public SimpleResponse save(@RequestBody ShopItem obj){
         SimpleResponse response = new SimpleResponse();
         try {
-            service.saveByParam(obj,obj.getParams());
+            rabbitTemplate.convertAndSend(RabbitmqConfig.ORDER_PEDDING_TOPIC, obj);
+
         } catch (Exception e) {
             response.setCode(500);
             response.setMessage(e.getMessage());

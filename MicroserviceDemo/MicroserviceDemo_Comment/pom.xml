@@ -50,11 +50,11 @@
         </dependency>
         <!--mybatisPlus
               springBoot3 使用springboot6 删除 NestedIOException
-              mybatisPlus version >= 3.5.3.1-->
+              mybatisPlus version >= 3.5.3-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3.1</version>
+            <version>3.5.3</version>
         </dependency>
         <!-- fastjson -->
         <dependency>
@@ -68,12 +68,6 @@
             <artifactId>pagehelper</artifactId>
             <version>5.1.11</version>
         </dependency>
-        <!--velocity 基于java的模板引擎-->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-        </dependency>
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -86,11 +80,6 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.2.0</version>
         </dependency>
-        <!--sentinel-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.alibaba.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>-->
-        <!--        </dependency>-->
         <!--nacos-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -149,18 +138,6 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
-            <!--maven默认不会将src/main/java下的xml打包，认为java目录下只是的源代码-->
-            <!--      <resource>-->
-            <!--        <directory>src/main/java</directory>-->
-            <!--        <includes>-->
-            <!--          <include>**/*.xml</include>-->
-            <!--        </includes>-->
-            <!--      </resource>-->
-            <!--      <resource>-->
-            <!--        <directory>src/main/resources</directory>-->
-            <!--        &lt;!&ndash; 开启过滤替换功能，解决：@spring.profiles.active@ found character '@' that cannot start any token. (Do not use @ for indentation)&ndash;&gt;-->
-            <!--        <filtering>true</filtering>-->
-            <!--      </resource>-->
         </resources>
 
         <plugins>
@@ -173,8 +150,6 @@
                       bootstrap.yml/application.yml选择打进jar包，@spring.profiles.active@会自动替换，若外置则需要手动替换-->
                     <excludes>
                         <exclude>**/*.yml</exclude>
-                        <!--<exclude>**/*.xml</exclude>-->
-                        <!--<exclude>mapper/**</exclude>-->
                         <exclude>lib/**</exclude>
                     </excludes>
                     <archive>
@@ -268,11 +243,6 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
-                        <!-- *.jar.original -> *.jar     原文件，也就是包含依赖打包的jar重新命名为run.jar
-                        original：Maven在Spring Boot打包之前创建的原始jar文件（只包含少量用户的类，不包含依赖）-->
-                        <!--<configuration>-->
-                        <!--    <classifier>run</classifier>-->
-                        <!--</configuration>-->
                     </execution>
                 </executions>
             </plugin>
