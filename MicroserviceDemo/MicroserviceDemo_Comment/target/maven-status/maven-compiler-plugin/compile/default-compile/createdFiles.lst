@@ -2,4 +2,5 @@ org\example\service\ICommentService.class
 org\example\controller\CommentController.class
 org\example\Comment.class
 org\example\dao\CommentMapper.class
+org\example\redis\RedisKey.class
 org\example\service\impl\CommentServiceImpl.class

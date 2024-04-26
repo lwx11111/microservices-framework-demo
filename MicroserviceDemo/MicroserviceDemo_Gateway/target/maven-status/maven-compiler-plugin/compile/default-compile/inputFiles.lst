@@ -1,5 +1,2 @@
-D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\config\RouteConfig.java
-D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\config\CorsConfig.java
-D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\config\SimpleCORSFilter.java
-D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\Gateway.java
-D:\WorkSpace\SchoolProjects\ProjectDemo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\config\AuthFilter.java
+D:\microservices-framework-demo-master\microservices-framework-demo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\config\CorsConfig.java
+D:\microservices-framework-demo-master\microservices-framework-demo\MicroserviceDemo\MicroserviceDemo_Gateway\src\main\java\org\example\Gateway.java

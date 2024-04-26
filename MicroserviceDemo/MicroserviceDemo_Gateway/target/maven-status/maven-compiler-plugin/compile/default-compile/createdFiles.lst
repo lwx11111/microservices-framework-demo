@@ -1,5 +1,2 @@
 org\example\config\CorsConfig.class
-org\example\config\SimpleCORSFilter.class
-org\example\config\AuthFilter.class
 org\example\Gateway.class
-org\example\config\RouteConfig.class

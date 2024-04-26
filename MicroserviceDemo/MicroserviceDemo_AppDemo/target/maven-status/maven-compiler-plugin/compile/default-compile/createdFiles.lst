@@ -1,7 +1,0 @@
-org\example\service\impl\ShopItemServiceImpl.class
-org\example\controller\ShopItemController.class
-org\example\dao\ShopItemMapper.class
-org\example\AppDemo.class
-org\example\service\IShopItemService.class
-org\example\feign\UserFeignApi.class
-org\example\feign\fallback\UserFeignFallback.class
