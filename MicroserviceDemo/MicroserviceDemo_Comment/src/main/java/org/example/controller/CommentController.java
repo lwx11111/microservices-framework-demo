@@ -2,6 +2,10 @@ package org.example.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import jakarta.annotation.Resource;
+<<<<<<< HEAD
+
+=======
+>>>>>>> a7b8e0ef96f8c093533dbae6faeaa78311048a6b
 import org.example.redis.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
@@ -40,6 +44,10 @@ public class CommentController {
     @PostMapping
     @ResponseBody
     @Operation(description = "创建")
+<<<<<<< HEAD
+
+=======
+>>>>>>> a7b8e0ef96f8c093533dbae6faeaa78311048a6b
     public SimpleResponse save(@RequestBody Comment obj){
         SimpleResponse response = new SimpleResponse();
         try {

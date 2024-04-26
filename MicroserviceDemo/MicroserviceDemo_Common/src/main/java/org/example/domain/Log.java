@@ -21,7 +21,11 @@ import java.util.Map;
  * 
  * </p>
  *
+<<<<<<< HEAD
+ * @author ；ljc
+=======
  * @author ljc
+>>>>>>> a7b8e0ef96f8c093533dbae6faeaa78311048a6b
  * @since 2024-03-25
  */
 @Data
