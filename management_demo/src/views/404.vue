@@ -1,6 +1,6 @@
 <template>
   <div>
-      <el-card style="margin: 10px; >
+      <el-card style="margin: 10px;">
           <h1>
               404
           </h1>

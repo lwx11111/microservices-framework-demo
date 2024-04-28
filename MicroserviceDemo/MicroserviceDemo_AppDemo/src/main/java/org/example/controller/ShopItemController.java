@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.example.annotation.Logs;
 import org.example.rabbitMQ.RabbitmqConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,11 @@ public class ShopItemController {
     @PostMapping
     @ResponseBody
     @Operation(description = "创建店铺物品表（只有官方一家店）")
+    @Logs
     public SimpleResponse save(@RequestBody ShopItem obj){
         SimpleResponse response = new SimpleResponse();
         try {
             rabbitTemplate.convertAndSend(RabbitmqConfig.ORDER_PEDDING_TOPIC, obj);
-
         } catch (Exception e) {
             response.setCode(500);
             response.setMessage(e.getMessage());

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitmqConfig {
 
-    //订单队列
     public static final String ORDER_PEDDING_TOPIC = "ORDER_PEDDING_TOPIC";
 
     //声明ORDER_PEDDING_TOPIC队列

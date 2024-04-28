@@ -19,7 +19,7 @@ public class ReceiveHandler {
     @Autowired
     private IShopItemService service;
 
-    //监听下单事件
+
     @RabbitListener(queues = {RabbitmqConfig.ORDER_PEDDING_TOPIC})
     public void receive_order(ShopItem obj){
         System.out.println("消息队列添加");
